@@ -15,7 +15,8 @@ public:
     std::shared_ptr<EntityType> createEntity(Args&&... args) {
         static_assert(std::is_base_of<Entity, EntityType>::value, "EntityType must be derived from Entity");
 
-        auto entity = std::make_shared<EntityType>(std::forward<Args>(args)...);
+        std::shared_ptr<EntityType> entity = nullptr;
+        entity = std::make_shared<EntityType>(std::forward<Args>(args)...);
         entities.push_back(entity);
         return entity;
     }

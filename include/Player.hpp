@@ -11,7 +11,7 @@ static bool spacebarPressed = false; // Static variable to track spacebar state
 class Player : public Entity
 {
 public:
-    Player(EntityManager &entityManager)
+    Player(EntityManager* entityManager)
         : entityManager(entityManager)
     {
         shape.setSize(sf::Vector2f(50, 50));
@@ -56,7 +56,7 @@ public:
             sf::Vector2f projectileDirection(0.0f, -1.0f);
             float projectileSpeed = 500.0f; 
 
-            auto entity = entityManager.createEntity<Projectile>(projectilePosition, projectileDirection, projectileSpeed);
+            auto entity = entityManager->createEntity<Projectile>(projectilePosition, projectileDirection, projectileSpeed);
         }
         else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
@@ -70,5 +70,5 @@ public:
     }
 
 private:
-    EntityManager &entityManager;
+    EntityManager* entityManager;
 };

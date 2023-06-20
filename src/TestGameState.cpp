@@ -4,7 +4,7 @@ TestGameState::TestGameState(GameDataRef data) : m_data(data) {}
 
 void TestGameState::init() {
 
-    m_player = m_entityManager.createEntity<Player>(m_entityManager);
+    m_player = m_entityManager.createEntity<Player>(&m_entityManager);
 
     m_data->camera.setSize(m_data->window.getSize().x, m_data->window.getSize().y);
 

@@ -1,5 +1,5 @@
 CC := C:/msys64/mingw64/bin/g++.exe
-CFLAGS := -fdiagnostics-color=always -g
+CFLAGS := -fdiagnostics-color=always -g -fsanitize=address
 LIBRARIES := -lsfml-main -lsfml-graphics -lsfml-window -lsfml-system
 SFML_INCLUDE := $(SFML_DIR)/include
 SFML_LIB := $(SFML_DIR)/lib
@@ -16,7 +16,7 @@ EXE := $(BUILD_DIR)/out.exe
 all: $(EXE)
 
 $(EXE): $(SRCS)
-	$(CC) $(CFLAGS) $^ -I$(SFML_INCLUDE) -I$(INCLUDE_DIR) -L$(SFML_LIB) $(LIBRARIES) -o $(EXE)
+	$(CC) $(CFLAGS) $^ -I$(SFML_INCLUDE) -I$(INCLUDE_DIR) -L$(SFML_LIB) $(LIBRARIES)  -o $(EXE)
 
 debug: $(SRCS)
 	$(CC) $(CFLAGS) $^ -I$(SFML_INCLUDE) -I$(INCLUDE_DIR) -L$(SFML_LIB) $(LIBRARIES) -D__DEBUG__ -o $(BUILD_DIR)/debug.exe

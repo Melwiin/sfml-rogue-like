@@ -4,15 +4,11 @@
 
 #include "Entity.hpp"
 #include "EntityManager.hpp"
-#include "Projectile.hpp"
-
-static bool spacebarPressed = false; // Static variable to track spacebar state
 
 class Player : public Entity
 {
 public:
-    Player(EntityManager* entityManager)
-        : entityManager(entityManager)
+    Player()
     {
         shape.setSize(sf::Vector2f(50, 50));
         shape.setFillColor(sf::Color::Red);
@@ -48,27 +44,10 @@ public:
         // Calculate the movement amount based on the movement direction and speed
         sf::Vector2f movementAmount = movementDirection * movementSpeed * deltaTime;
         shape.move(movementAmount);
-
-        if (!spacebarPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-        {
-            spacebarPressed = true; // Spacebar pressed, set the flag
-            sf::Vector2f projectilePosition = shape.getPosition() - sf::Vector2f(20, 20);
-            sf::Vector2f projectileDirection(0.0f, -1.0f);
-            float projectileSpeed = 500.0f; 
-
-            auto entity = entityManager->createEntity<Projectile>(projectilePosition, projectileDirection, projectileSpeed);
-        }
-        else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-        {
-            spacebarPressed = false; // Spacebar released, reset the flag
-        }
     }
 
     void render(sf::RenderWindow &window) const override
     {
         window.draw(shape);
     }
-
-private:
-    EntityManager* entityManager;
 };

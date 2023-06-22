@@ -24,8 +24,6 @@ void Game::run()
         
         m_data->stateManager.processStateChanges();
 
-        m_data->stateManager.processStateChanges();
-
         deltaTime = clock.restart().asSeconds();
 
         m_data->stateManager.getActiveState()->handleEvents();

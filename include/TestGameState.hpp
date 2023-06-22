@@ -24,4 +24,5 @@ private:
     sf::Sprite m_background;
 
     std::vector<std::shared_ptr<Entity>> m_enemies;
+    bool spacebarPressed; // Static variable to track spacebar state
 };
